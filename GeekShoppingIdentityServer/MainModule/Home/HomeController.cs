@@ -27,7 +27,7 @@ namespace IdentityServerHost.Quickstart.UI
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult IndexID()
         {
             if (_environment.IsDevelopment())
             {

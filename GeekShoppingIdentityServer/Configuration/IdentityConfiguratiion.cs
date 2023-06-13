@@ -3,10 +3,10 @@ using Duende.IdentityServer.Models;
 
 namespace GeekShoppingIdentityServer.Configuration
 {
-    public static class IdentityConfiguratiion
+    public static class IdentityConfiguration
     {
         public const string Admin = "Admin";
-        public const string Costumer = "Password";
+        public const string Client = "Client";
 
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>
@@ -39,8 +39,8 @@ namespace GeekShoppingIdentityServer.Configuration
                     ClientId = "geek_shopping",
                     ClientSecrets = { new Secret("my_super_secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = {"http://localhost:50917/signin-oidc"}, 
-                    PostLogoutRedirectUris = {"http://localhost:50917/sigout-callback-oidc"},
+                    RedirectUris = {"https://localhost:4430/signin-oidc"}, 
+                    PostLogoutRedirectUris = {"https://localhost:4430/sigout-callback-oidc"},
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

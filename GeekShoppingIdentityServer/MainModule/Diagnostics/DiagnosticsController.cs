@@ -14,7 +14,7 @@ namespace IdentityServerHost.Quickstart.UI
     [Authorize]
     public class DiagnosticsController : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexID()
         {
             var localAddresses = new string[] { "127.0.0.1", "::1", HttpContext.Connection.LocalIpAddress.ToString() };
             if (!localAddresses.Contains(HttpContext.Connection.RemoteIpAddress.ToString()))

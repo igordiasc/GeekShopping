@@ -41,7 +41,7 @@ namespace IdentityServerHost.Quickstart.UI
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexID()
         {
             string userCodeParamName = _options.Value.UserInteraction.DeviceVerificationUserCodeParameter;
             string userCode = Request.Query[userCodeParamName];
