@@ -41,7 +41,7 @@ namespace IdentityServerHost.Quickstart.UI
         /// Show list of grants
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexID()
         {
             return View("Index", await BuildViewModelAsync());
         }
