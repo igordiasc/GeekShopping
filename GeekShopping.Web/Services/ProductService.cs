@@ -8,13 +8,12 @@ namespace GeekShopping.Web.Services
     public class ProductService : IProductService
     {
         private readonly HttpClient _client;
+        public const string BasePath = "api/v1/product";
 
         public ProductService(HttpClient client)
         {
             _client = client;
         }
-
-        public const string BasePath = "api/v1/product";
         public async Task<IEnumerable<ProductViewModel>> FindAllProducts(string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
