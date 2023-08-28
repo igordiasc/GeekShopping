@@ -13,7 +13,9 @@ namespace GeekShopping.Web.Controllers
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
+        public HomeController(ILogger<HomeController> logger,
+            IProductService productService,
+            ICartService cartService)
         {
             _logger = logger;
             _productService = productService;
@@ -24,22 +26,23 @@ namespace GeekShopping.Web.Controllers
         {
             var products = await _productService.FindAllProducts("");
             return View(products);
-            
         }
+
         [Authorize]
         public async Task<IActionResult> Details(int id)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
             var model = await _productService.FindById(id, token);
             return View(model);
-            
         }
+
         [HttpPost]
         [ActionName("Details")]
         [Authorize]
         public async Task<IActionResult> DetailsPost(ProductViewModel model)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
+
             CartViewModel cart = new()
             {
                 CartHeader = new CartHeaderViewModel
@@ -52,19 +55,18 @@ namespace GeekShopping.Web.Controllers
             {
                 Count = model.Count,
                 ProductId = model.Id,
-                Product = await _productService.FindById(model.Id, token),
+                Product = await _productService.FindById(model.Id, token)
             };
 
-            List<CartDetailViewModel> cartDetails = new();
+            List<CartDetailViewModel> cartDetails = new List<CartDetailViewModel>();
             cartDetails.Add(cartDetail);
-            cart.CartDetails= cartDetails;
+            cart.CartDetails = cartDetails;
 
             var response = await _cartService.AddItemToCart(cart, token);
-            if(response != null)
+            if (response != null)
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(model);
         }
 
@@ -78,6 +80,7 @@ namespace GeekShopping.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         [Authorize]
         public async Task<IActionResult> Login()
         {

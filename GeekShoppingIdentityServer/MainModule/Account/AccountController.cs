@@ -215,6 +215,7 @@ namespace IdentityServerHost.Quickstart.UI
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Obsolete]
         public async Task<IActionResult> Logout(LogoutInputModel model)
         {
             // build a model so the logged out page knows what to display
@@ -508,6 +509,7 @@ namespace IdentityServerHost.Quickstart.UI
             return vm;
         }
 
+        [Obsolete]
         private async Task<LoggedOutViewModel> BuildLoggedOutViewModelAsync(string logoutId)
         {
             // get context information (client name, post logout redirect URI and iframe for federated signout)
